@@ -1,3 +1,3 @@
-![Rubynight](resources/ruby_night_framework.png)
+![Rubynight](resources/logo.png)
 
-Just a little mvc self-framework based on most used frameworks and rails
+Just a little MVC self-framework based on most used frameworks and rails
