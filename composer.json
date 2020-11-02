@@ -1,0 +1,17 @@
+{
+    "name": "devkhris/rubynight-framework",
+    "authors": [
+        {
+            "name": "Christian Hernandez",
+            "email": "chrissh443@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {
+
+    }
+}
