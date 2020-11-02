@@ -1,4 +1,4 @@
-![Rubynight](resources/logo.png)
+![RubyNight](resources/logo.png)
 
-# Rubynight Framework
+# RubyNight Framework
 ### Just a little MVC self-framework based on most used frameworks and rails
