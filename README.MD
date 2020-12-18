@@ -1,4 +1,6 @@
 ![RubyNight](public/img/logo.png)
 
-# RubyNight Framework
-### Just a little MVC self-framework based on most used frameworks and rails
+## A work in progress PHP Framework with MVC structure inspired by Laravel, Yii and Rails
+
+
+
