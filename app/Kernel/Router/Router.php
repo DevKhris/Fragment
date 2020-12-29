@@ -16,126 +16,90 @@ use RubyNight\Kernel\Http\Response;
 class Router
 {
     // Request var
-    public Request $req;
+    private Request $req;
     // Response var
-    public Response $res;
+    private Response $res;
     // array of routes
-    protected array $routes = [];
-
-    /** 
-     * [Constructor function]
-     * 
-     * @param [Request]  $req passes Response to constructor
-     * @param [Response]  $res passes Request to constructor
+    protected array $routes = array();
+    private $httpMethods = array(
+        "GET",
+        "POST"
+    );
+    /**
+     * Constructor function
+     *
+     * @param Request  $req passes Response to constructor
+     * @param Response $res passes Request to constructor
+     *
+     * @return $this
      */
     public function __construct($req, $res)
     {
         // instance of request object
-        $this->req = $req;
-
+        $this->request = $req;
         // instance of response object
-        $this->res = $res;
+        $this->response = $res;
+
+        return $this;
     }
 
     /**
-     * [Get function]
+     * Get function
      *
-     * @param [type] $path
-     * @param [type] $callback
-     * 
-     * @return void
+     * @param string $path     uri path
+     * @param [any]  $callback callback
+     *
+     * @return $this
      */
     public function get($path, $callback)
     {
         // get's the path route and returns it's callback
-        $this->routes['get'][$path] = $callback;
+        return $this->routes['get'][$path] = $callback;
     }
 
 
     /**
-     * [Set function]
+     * Post function
      *
-     * @param [Callback] $callback
-     * 
-     * @return void
+     * @param string $path     uri path
+     * @param [any]  $callback callback
+     *
+     * @return $this
      */
     public function post($path, $callback)
     {
         // post's the path route and returns it's callback
-        $this->routes['post'][$path] = $callback;
+        return $this->routes['post'][$path] = $callback;
     }
 
     /**
-     * [Resolve function]
+     * Resolve function
      *
      * @return void
      */
     public function resolve()
     {
         // get path from request
-        $path = $this->req->getPath();
+        $path = $this->request->getPath();
         // get pmethod from request
-        $method = $this->req->getMethod();
+        $method = $this->request->getMethod();
 
         // get the route method and path or return false
-        $callback = $this->routes[$method][$path] ?? false;
-
-        // if not callback then return and 404 state and display view
+        $callback = $this->routes[$method][$path] ?? '';
+        // if not callback then return 404 state and display view
         if ($callback === false) {
             $this->res->setStatus(404);
-            return $this->renderView("404");
         }
         // if callback is a string
         if (is_string($callback)) {
             // return the view of the current callack
-            return $this->renderView($callback);
+            //return $this->view($callback);
         }
         // if is an array passes the callback index to self instance
         if (is_array($callback)) {
             $self[0] = new $callback[0];
         }
         // executes the user function from callback
-        return call_user_func($callback, $this->req);
-    }
-
-    /**
-     * Render View function
-     * @param [type] $view
-     * @return void
-     */
-    public function renderView($view)
-    {
-        $displayContent = $this->displayContent();
-        $viewContent = $this->renderOneView($view);
-        return str_replace('{{ display }}', $viewContent, $displayContent);
-
-        include_once Application::$appPath . "/views/$view.php";
-    }
-    /**
-     * [renderContent function for rendering content]
-     * @param  [string] $viewContent [content to render]
-     * @return [view]              [content]
-     */
-    public function renderContent($viewContent)
-    {
-        $displayContent = $this->displayContent();
-        return str_replace('{{ display }}', $viewContent, $displayContent);
-    }
-
-    protected function displayContent()
-    {
-        \ob_start();
-        include_once Application::$appPath . "/resources/views/layout/app.jewel.php";
-        return \ob_get_clean();
-    }
-
-    protected function renderOneView($view, $params = [])
-    {
-        foreach ($params as $key => $value) {
-            $key = $value;
-        }
-        \ob_start();
-        include_once Application::$appPath . "/resources/views/$view.jewel.php";
-        return \ob_get_clean();
+        return call_user_func(array($callback[0], $callback[1]));
     }
 }

@@ -13,9 +13,9 @@ class Request
 {
     public $req;
     /**
-     * [getPath get's the relative path]
+     * Get the relative path
      * 
-     * @return [string] [path]
+     * @return string uri path
      */
     public function getPath()
     {
@@ -35,8 +35,9 @@ class Request
     }
 
     /**
-     * [getMethod get method from server]
-     * @return [type] [description]
+     * Get method from server
+     * 
+     * @return string method
      */
     public function getMethod()
     {

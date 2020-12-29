@@ -9,10 +9,11 @@
 	"license": "MIT",
     "autoload": {
         "psr-4": {
-            "RubyNight\\": "app/"
+            "RubyNight\\": "app/",
+            "RubyNight\\Controllers\\": "app/Controllers/",
         }
     },
     "require": {
-
+        "pug-php/pug": "^3.4"
     }
 }

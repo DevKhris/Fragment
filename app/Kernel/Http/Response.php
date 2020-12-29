@@ -12,9 +12,9 @@ namespace RubyNight\Kernel\Http;
 class Response
 {
     /**
-     * [setStatus for http response]
+     * Set status for http response
      * 
-     * @param int $code [response code]
+     * @param int $code response code
      */
     public function setStatus(int $code)
     {

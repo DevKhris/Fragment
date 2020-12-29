@@ -2,9 +2,9 @@
 
 /**
  * Class MainController for handling rendering and callbacks
- * 
+ *
  * @package RubyNight;
- * 
+ *
  * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
  */
 
@@ -17,36 +17,37 @@ use RubyNight\Kernel\Http\Request;
 class Application
 {
     public static string $appPath;
-    public Router $router;
-    public Request $req;
-    public Response $res;
     public static Application $app;
     /**
-     * [contructor function]
-     * 
-     * 
-     * @param [path] $appPath 
+     *  Contructor function
+     *
+     * @param string $path app path
+     *
+     * @return $this
+     *
      */
-    public function __construct($appPath)
+    public function __construct($path)
     {
         // self instance and application path
         self::$app = $this;
-        self::$appPath = $appPath;
+        $this->$path = $path;
         // new request instance
         $this->req = new Request();
         // new response instance
         $this->res = new Response();
         // new router instance
         $this->router = new Router($this->req, $this->res);
+        return $this;
     }
 
     /**
-     * [execute resolves callback]
-     * @return [callback] [executes callback from request]
+     * Execute callback resolve
+     *
+     * @return $this executes callback from request
      */
     public function execute()
     {
         // returns resolve
-        echo $this->router->resolve();
+        return $this->router->resolve();
     }
 }
