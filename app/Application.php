@@ -11,12 +11,12 @@
 namespace RubyNight;
 
 use RubyNight\Kernel\Router\Router;
-use RubyNight\Kernel\Http\Response;
 use RubyNight\Kernel\Http\Request;
+use RubyNight\Kernel\Http\Response;
 
 class Application
 {
-    public static string $appPath;
+    public string $appPath;
     public static Application $app;
     /**
      *  Contructor function

@@ -10,10 +10,10 @@
     "autoload": {
         "psr-4": {
             "RubyNight\\": "app/",
-            "RubyNight\\Controllers\\": "app/Controllers/",
+            "RubyNight\\Controllers\\": "app/Controllers/"
         }
     },
     "require": {
-        "pug-php/pug": "^3.4"
+        "phug/phug": "^1.8"
     }
 }

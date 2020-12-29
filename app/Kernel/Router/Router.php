@@ -2,6 +2,7 @@
 
 namespace RubyNight\Kernel\Router;
 
+use Phug\Phug;
 use RubyNight\Application;
 use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
@@ -15,16 +16,9 @@ use RubyNight\Kernel\Http\Response;
  */
 class Router
 {
-    // Request var
-    private Request $req;
-    // Response var
-    private Response $res;
-    // array of routes
+    // protected array of routes
     protected array $routes = array();
-    private $httpMethods = array(
-        "GET",
-        "POST"
-    );
+
     /**
      * Constructor function
      *
@@ -33,13 +27,12 @@ class Router
      *
      * @return $this
      */
-    public function __construct($req, $res)
+    public function __construct(Request $req, Response $res)
     {
         // instance of request object
         $this->request = $req;
         // instance of response object
         $this->response = $res;
-
         return $this;
     }
 
@@ -47,7 +40,7 @@ class Router
      * Get function
      *
      * @param string $path     uri path
-     * @param [any]  $callback callback
+     * @param string $callback callback
      *
      * @return $this
      */
@@ -62,7 +55,7 @@ class Router
      * Post function
      *
      * @param string $path     uri path
-     * @param [any]  $callback callback
+     * @param string  $callback callback
      *
      * @return $this
      */
@@ -93,7 +86,7 @@ class Router
         // if callback is a string
         if (is_string($callback)) {
             // return the view of the current callack
-            //return $this->view($callback);
+            return $this->view($callback, null);
         }
         // if is an array passes the callback index to self instance
         if (is_array($callback)) {
@@ -101,5 +94,20 @@ class Router
         }
         // executes the user function from callback
         return call_user_func(array($callback[0], $callback[1]));
+    }
+
+    /**
+     * Render view to route
+     *
+     * @param  string $callback [description]
+     * @param  array $args     [description]
+     * @param  array $opt      [description]
+     *
+     * @return view           [description]
+     */
+    public static function view($callback, $args = [null], $opt = [null])
+    {
+
+        Phug::displayFile(VIEWS_PATH . $callback . '.pug', $args, $opt);
     }
 }
