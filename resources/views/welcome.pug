@@ -1,5 +1,14 @@
-<img src="/public/img/logo.png" alt="RubyNight Logo">
-h1 Welcome to RubyNight
-h2 This is a rendering example with pug
-<hr>
-p=$version
+
+extends layout/app.pug
+
+block content
+	div.py-12.bg-white
+		div.max-w-7xl.mx-auto.px-4(class='sm:px-6 lg:px-8')
+			div.py-2(class='sm:text-center lg:text-center')
+				img.flex.justify-center.mx-auto(src="/public/img/logo.png" alt="RubyNight Logo")
+				h1.mt-2.text-3xl.leading-8.font-extrabold.tracking-tight.text-dark-900(class='sm:text-4xl') Welcome to RubyNight
+				p.text-base.text-indigo-700.font-semibold.tracking-wide This is a rendering example with pug templating engine and tailwind
+
+	<hr>
+	p.px-4.float-right Version #{$version}
+
