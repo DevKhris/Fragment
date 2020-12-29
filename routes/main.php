@@ -1,14 +1,20 @@
 <?php
 
-use Phug\Phug;
+
 use RubyNight\Application;
 use RubyNight\Controllers\IndexController;
+
+/**
+ * Here goes the routes for the RubyNight routing
+ *
+ */
 
 // Routes to home view
 $app->router->get('/', [IndexController::class, 'index']);
 
 $app->router->get('/docs', function () {
-    echo 'test';
+    echo 'Test';
 });
+
 // execute the app
 return $app->execute();

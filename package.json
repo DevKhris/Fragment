@@ -1,0 +1,33 @@
+{
+  "name": "rubynight",
+  "version": "0.0.1",
+  "description": "A PHP MVC Framework inspired by Laravel, Laminas and Rails.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss-cli@latest build ./resources/css/styles.css -o ./public/css/styles.css",
+    "prod": "NODE_ENV=production npx tailwindcss-cli@latest build /resources/css/styles.css -o ./public/css/styles.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevKhris/rubynight.git"
+  },
+  "keywords": [
+    "php",
+    "mvc",
+    "framework"
+  ],
+  "author": "Christian Hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevKhris/rubynight/issues"
+  },
+  "homepage": "https://github.com/DevKhris/rubynight#readme",
+  "devDependencies": {
+    "tailwindcss": "^2.0.2"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.1.0",
+    "postcss": "^8.2.1"
+  }
+}
