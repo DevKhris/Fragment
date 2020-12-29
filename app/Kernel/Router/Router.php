@@ -93,7 +93,7 @@ class Router
             $self[0] = new $callback[0];
         }
         // executes the user function from callback
-        return call_user_func(array($callback[0], $callback[1]));
+        return call_user_func($callback);
     }
 
     /**

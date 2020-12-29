@@ -2,7 +2,6 @@
 
 namespace RubyNight\Controllers;
 
-use Phug\Phug;
 use RubyNight\Kernel\Router\Router;
 
 class IndexController
