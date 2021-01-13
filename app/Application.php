@@ -1,42 +1,48 @@
 <?php
 
-/**
- * Class MainController for handling rendering and callbacks
- *
- * @package RubyNight;
- *
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
- */
-
 namespace RubyNight;
 
-use RubyNight\Kernel\Router\Router;
 use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
+use RubyNight\Kernel\Router\Router;
+use RubyNight\Kernel\Http\Controller;
 
+/**
+ * Application class
+ * 
+ * @package RubyNight;
+ * 
+ * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ */
 class Application
 {
-    public string $appPath;
     public static Application $app;
+    public ?Controller $controller = null;
+    public string $path;
+    public Request $req;
+    public Response $res;
+    public Router $router;
+
     /**
      *  Contructor function
      *
      * @param string $path app path
-     *
-     * @return $this
-     *
+     * 
+     * @return void
      */
     public function __construct($path)
     {
-        // self instance and application path
+        // self instance 
         self::$app = $this;
+        // application path
         $this->$path = $path;
         // new request instance
         $this->req = new Request();
         // new response instance
         $this->res = new Response();
         // new router instance
-        $this->router = new Router($this->req, $this->res);
+        $this->route = new Router($this->req, $this->res);
+        // return instance
         return $this;
     }
 
@@ -48,6 +54,34 @@ class Application
     public function execute()
     {
         // returns resolve
-        return $this->router->resolve();
+        return $this->route->resolve();
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param string $event
+     * 
+     * @return void
+     */
+    public function doEvent($event)
+    {
+        $callbacks = $this->eventListener[$event] ?? [];
+        foreach ($callbacks as $cb) {
+            call_user_func($cb);
+        }
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param string $event
+     * @param string $callback
+     * 
+     * @return void
+     */
+    public function on($event, $callback)
+    {
+        $this->eventListeners[$event][] = $callback;
     }
 }

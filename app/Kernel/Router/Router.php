@@ -2,7 +2,7 @@
 
 namespace RubyNight\Kernel\Router;
 
-use Phug\Phug;
+use Phug\Phug as Phug;
 use RubyNight\Application;
 use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
@@ -16,8 +16,19 @@ use RubyNight\Kernel\Http\Response;
  */
 class Router
 {
-    // protected array of routes
-    protected array $routes = array();
+    /** 
+     * Associative array for routing table
+     * 
+     * @var array
+     */
+    protected $routes = array();
+
+    /** 
+     * Parameters from the route
+     * 
+     * @var array
+     */
+    protected $params = array();
 
     /**
      * Constructor function
@@ -30,9 +41,10 @@ class Router
     public function __construct(Request $req, Response $res)
     {
         // instance of request object
-        $this->request = $req;
+        $this->req = $req;
         // instance of response object
-        $this->response = $res;
+        $this->res = $res;
+        // return instance
         return $this;
     }
 
@@ -44,7 +56,7 @@ class Router
      *
      * @return $this
      */
-    public function get($path, $callback)
+    public function get(string $path, $callback)
     {
         // get's the path route and returns it's callback
         return $this->routes['get'][$path] = $callback;
@@ -55,11 +67,11 @@ class Router
      * Post function
      *
      * @param string $path     uri path
-     * @param string  $callback callback
+     * @param string $callback callback
      *
      * @return $this
      */
-    public function post($path, $callback)
+    public function post(string $path, $callback)
     {
         // post's the path route and returns it's callback
         return $this->routes['post'][$path] = $callback;
@@ -73,41 +85,46 @@ class Router
     public function resolve()
     {
         // get path from request
-        $path = $this->request->getPath();
+        $path = $this->req->getPath();
         // get pmethod from request
-        $method = $this->request->getMethod();
-
+        $method = $this->req->getMethod();
         // get the route method and path or return false
-        $callback = $this->routes[$method][$path] ?? '';
+        $callback = $this->routes[$method][$path] ?? false;
         // if not callback then return 404 state and display view
-        if ($callback === false) {
+        if (!$callback) {
             $this->res->setStatus(404);
         }
-        // if callback is a string
-        if (is_string($callback)) {
-            // return the view of the current callack
-            return $this->view($callback, null);
-        }
-        // if is an array passes the callback index to self instance
+        // if callback is a array
         if (is_array($callback)) {
-            $self[0] = new $callback[0];
+            /**
+             * @var $controller \RubyNight\Kernel\Http\Controller
+             */
+            // set controller from callback
+            $controller = new $callback[0];
+            // set hook to controller
+            $controller->hook = $callback[1];
+            Application::$app->controller = $controller;
+            $middles = $controller->get();
+            foreach ($middles as $middleware) {
+                $middleware->run();
+            }
+            $callback[0] = $controller;
         }
-        // executes the user function from callback
-        return call_user_func($callback);
+        // executes the class method from callback
+        return call_user_func($callback, $this->req, $this->res);
     }
 
     /**
      * Render view to route
      *
-     * @param  string $callback [description]
-     * @param  array $args     [description]
-     * @param  array $opt      [description]
+     * @param string $view     view to display
+     * @param array  $args     args
+     * @param array  $opt      options
      *
-     * @return view           [description]
+     * @return view           rendered view
      */
-    public static function view($callback, $args = [null], $opt = [null])
+    public static function view($view, $args = [null], $opt = [null])
     {
-
-        Phug::displayFile(VIEWS_PATH . $callback . '.pug', $args, $opt);
+        Phug::displayFile(VIEWS_PATH . "$view.pug", $args, $opt);
     }
 }

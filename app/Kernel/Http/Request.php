@@ -2,6 +2,8 @@
 
 namespace RubyNight\Kernel\Http;
 
+use IRequest;
+
 /**
  * Class Request for request handling
  * 
@@ -12,6 +14,14 @@ namespace RubyNight\Kernel\Http;
 class Request
 {
     public $req;
+    /**
+     * Constructor
+     */
+    function __construct()
+    {
+        $this->getMethod();
+    }
+
     /**
      * Get the relative path
      * 
@@ -57,20 +67,29 @@ class Request
         return $this->getMethod() === 'post';
     }
 
+    public function onPut()
+    {
+        return $this->getMethod() === 'put';
+    }
+
+    public function onDelete()
+    {
+        return $this->getMethod() === 'put';
+    }
+
     public function getBody()
     {
         $body = [];
         if ($this->getMethod() === 'get') {
-            foreach ($_GET as $key => $value) {
+            foreach ($_GET as $key) {
                 $body[$key] = \filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
         if ($this->getMethod() === 'post') {
-            foreach ($_GET as $key => $value) {
+            foreach ($_POST as $key) {
                 $body[$key] = \filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         }
-
         return $body;
     }
 }

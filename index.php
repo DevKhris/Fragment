@@ -4,7 +4,6 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use RubyNight\Application;
-
 // create new app instance
 $app = new Application(__DIR__);
 

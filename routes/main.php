@@ -1,6 +1,5 @@
 <?php
-
-
+use Phug\Phug;
 use RubyNight\Application;
 use RubyNight\Controllers\IndexController;
 
@@ -10,7 +9,12 @@ use RubyNight\Controllers\IndexController;
  */
 
 // Routes to home view
-$app->router->get('/', [IndexController::class, 'index']);
+$app->route->get('/', [IndexController::class, 'index']);
+
+// this works with warnings
+$app->route->get('docs', function () {
+    Phug::display('h1 Welcome');
+});
 
 // execute the app
 return $app->execute();
