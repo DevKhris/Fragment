@@ -15,10 +15,10 @@ use RubyNight\Controllers\IndexController;
 // Here goes the routes for the RubyNight routing
 //
 
-// Routes to home view
+// Routes to index view
 $app->route->get('/', [IndexController::class, 'index']);
 
-// this works with warnings
+// Example of singleton
 $app->route->get('/docs', Phug::display('h1 RubyNight Docs'));
 
 // execute the app

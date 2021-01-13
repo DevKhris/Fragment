@@ -3,5 +3,9 @@
 ## A work in progress PHP Framework with MVC structure inspired by Laravel, Yii and Rails
 
 # Changelog
+
+### v0.0.1
+[Bugfix] Routing not working with anon functions[Fixed]
+[+] Added Phug as templating engine with routing
 ### v0.0.1
 [+] Added Phug as templating engine with routing
