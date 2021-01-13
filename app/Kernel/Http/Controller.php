@@ -5,11 +5,13 @@ namespace RubyNight\Kernel\Http;
 use RubyNight\Application;
 
 /**
- * Class Controller 
- *
- * @package RubyNight\Kernel\Router;
- *
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * Controller class
+ * 
+ * @category Framework
+ * @package  RubyNight\Kernel\Http;
+ * @author   Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
+ * @link     Repository https://github.com/DevKhris/rubynight
  */
 class Controller
 {

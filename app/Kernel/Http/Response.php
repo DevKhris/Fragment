@@ -3,11 +3,13 @@
 namespace RubyNight\Kernel\Http;
 
 /**
- * Class Response for response handling
+ * Response class for response handling
  * 
- * @package RubyNight\Kernel\Http;
- * 
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @category Framework
+ * @package  RubyNight\Kernel\Http;
+ * @author   Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
+ * @link     Repository https://github.com/DevKhris/rubynight
  */
 class Response
 {

@@ -8,11 +8,13 @@ use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
 
 /**
- * Class Router for basic routing and route handling
+ * Router class for basic routing and route handling
  *
- * @package RubyNight\Kernel\Router;
- *
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @category Framework
+ * @package  RubyNight\Kernel\Http;
+ * @author   Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
+ * @link     Repository https://github.com/DevKhris/rubynight
  */
 class Router
 {
@@ -109,9 +111,12 @@ class Router
                 $middleware->run();
             }
             $callback[0] = $controller;
+            // executes the class method from callback
+            return call_user_func($callback, $this->req, $this->res);
         }
-        // executes the class method from callback
-        return call_user_func($callback, $this->req, $this->res);
+        if (is_string($callback)) {
+            return call_user_func($callback);
+        }
     }
 
     /**

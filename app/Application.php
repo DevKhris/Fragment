@@ -1,18 +1,18 @@
 <?php
-
 namespace RubyNight;
 
 use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
 use RubyNight\Kernel\Router\Router;
 use RubyNight\Kernel\Http\Controller;
-
 /**
  * Application class
  * 
- * @package RubyNight;
- * 
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @category Framework
+ * @package  RubyNight;
+ * @author   Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
+ * @link     Repository https://github.com/DevKhris/rubynight
  */
 class Application
 {

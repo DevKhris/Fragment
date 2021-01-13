@@ -2,14 +2,14 @@
 
 namespace RubyNight\Kernel\Http;
 
-use IRequest;
-
 /**
- * Class Request for request handling
- * 
- * @package RubyNight\Kernel\Http
- * 
- * @author Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * Request class for request handling
+ *
+ * @category Framework
+ * @package  RubyNight\Kernel\Http;
+ * @author   Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
+ * @link     Repository https://github.com/DevKhris/rubynight
  */
 class Request
 {
