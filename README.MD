@@ -5,8 +5,9 @@
 # Changelog
 
 ### v0.0.1a
-[Bugfix] Routing not working with functions
-[+] Improve routing and handling of callback
-[+] Add .env and config
+- [Bugfix] Routing not working with functions
+- [+] Improve routing and handling of callback
+- [+] Add .env and config
+
 ### v0.0.1
-[+] Added Phug as templating engine with routing
+- [+] Added Phug as templating engine with routing
