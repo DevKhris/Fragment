@@ -6,6 +6,7 @@ use Phug\Phug as Phug;
 use RubyNight\Application;
 use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
+use RubyNight\Kernel\Helpers\Config;
 
 /**
  * Router class for basic routing and route handling
@@ -130,6 +131,6 @@ class Router
      */
     public static function view($view, $args = [null], $opt = [null])
     {
-        Phug::displayFile(VIEWS_PATH . "$view.pug", $args, $opt);
+        Phug::displayFile(Config::get('VIEWS_PATH') . "/$view.pug", $args, $opt);
     }
 }

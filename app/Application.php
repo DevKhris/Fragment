@@ -1,10 +1,12 @@
 <?php
+
 namespace RubyNight;
 
 use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
 use RubyNight\Kernel\Router\Router;
 use RubyNight\Kernel\Http\Controller;
+
 /**
  * Application class
  * 
@@ -21,7 +23,7 @@ class Application
     public string $path;
     public Request $req;
     public Response $res;
-    public Router $router;
+    public Router $route;
 
     /**
      *  Contructor function
@@ -35,7 +37,7 @@ class Application
         // self instance 
         self::$app = $this;
         // application path
-        $this->$path = $path;
+        $this->path = $path;
         // new request instance
         $this->req = new Request();
         // new response instance

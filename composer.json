@@ -1,12 +1,13 @@
 {
-    "name": "devkhris/rubynight-framework",
+    "name": "devkhris/rubynight",
+    "description": "PHP MVC Framework",
     "authors": [
         {
             "name": "Christian Hernandez",
             "email": "chrissh443@gmail.com"
         }
     ],
-	"license": "MIT",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "RubyNight\\": "app/",

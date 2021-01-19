@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Main routes 
  *
@@ -8,6 +9,7 @@
  * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
  * @link     Repository https://github.com/DevKhris/rubynight
  */
+
 use Phug\Phug;
 use RubyNight\Controllers\IndexController;
 
