@@ -31,8 +31,10 @@ class Debug
      */
     public function print()
     {
-        echo '<pre style="font-size: 12px; background-color: #112233; color: #fff; font-family: sans-serif;> ';
+        echo '<div style="background: #123; color: #fff; font-family: sans-serif;">';
+        echo '<h2 style="margin-top: 2px;">Debug</h2>';
+        echo '<pre style="font-size: 12px; >';
         var_dump($this->debug);
-        echo '</pre>';
+        echo "</pre></div>";
     }
 }

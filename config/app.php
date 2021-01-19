@@ -20,5 +20,5 @@ return $config = [
     'LOGS_PATH' => realpath('logs'),
     'APP_NAME' => $_ENV['APP_NAME'],
     'APP_VERSION' => $_ENV['APP_VERSION'],
-
+    'APP_DEBUG' => $_ENV['APP_DEBUG']
 ];

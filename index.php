@@ -13,14 +13,16 @@ Logger::enableSysLogs();
 $log = Logger::get();
 
 // Define base path with config helper
-define('BASE_PATH', Config::get('BASE_PATH', ''));
+define('BASE_PATH', Config::get('BASE_PATH'));
 
 // create new app instance
 $app = new Application(__DIR__);
 
 // Debug application
-$debug = new Debug($app);
-$debug->print();
+if ($_ENV['APP_DEBUG'] == "true") {
+    $debug = new Debug($app);
+    $debug->print();
+}
 
 // Require routes below
 require_once BASE_PATH . 'routes/main.php';

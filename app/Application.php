@@ -6,6 +6,7 @@ use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
 use RubyNight\Kernel\Router\Router;
 use RubyNight\Kernel\Http\Controller;
+use RubyNight\Libs\Logger;
 
 /**
  * Application class
@@ -24,6 +25,7 @@ class Application
     public Request $req;
     public Response $res;
     public Router $route;
+    public Logger $log;
 
     /**
      *  Contructor function
@@ -42,10 +44,12 @@ class Application
         $this->req = new Request();
         // new response instance
         $this->res = new Response();
+        // new Logger instance
+        $this->log = Logger::get();
         // new router instance
         $this->route = new Router($this->req, $this->res);
         // return instance
-        return $this;
+        return self::$app;
     }
 
     /**

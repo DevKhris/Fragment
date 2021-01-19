@@ -24,7 +24,7 @@ class Router
      * 
      * @var array
      */
-    protected $routes = array();
+    protected static $routes = array();
 
     /** 
      * Parameters from the route
@@ -57,27 +57,26 @@ class Router
      * @param string $path     uri path
      * @param string $callback callback
      *
-     * @return $this
+     * @return void
      */
-    public function get(string $path, $callback)
+    public static function get($route, $callback)
     {
         // get's the path route and returns it's callback
-        return $this->routes['get'][$path] = $callback;
+        return self::$routes['get'][$route] = $callback;
     }
-
 
     /**
      * Post function
      *
-     * @param string $path     uri path
+     * @param string $route     uri path
      * @param string $callback callback
      *
-     * @return $this
+     * @return void
      */
-    public function post(string $path, $callback)
+    public static function post($route, $callback)
     {
         // post's the path route and returns it's callback
-        return $this->routes['post'][$path] = $callback;
+        return self::$routes['post'][$route] = $callback;
     }
 
     /**
@@ -88,11 +87,11 @@ class Router
     public function resolve()
     {
         // get path from request
-        $path = $this->req->getPath();
+        $route = $this->req->getPath();
         // get pmethod from request
         $method = $this->req->getMethod();
         // get the route method and path or return false
-        $callback = $this->routes[$method][$path] ?? false;
+        $callback = $this->routes[$method][$route] ?? false;
         // if not callback then return 404 state and display view
         if (!$callback) {
             $this->res->setStatus(404);

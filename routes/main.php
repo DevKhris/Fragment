@@ -10,7 +10,7 @@
  * @link     Repository https://github.com/DevKhris/rubynight
  */
 
-use Phug\Phug;
+use RubyNight\Kernel\Router\Router;
 use RubyNight\Controllers\IndexController;
 
 //
@@ -18,10 +18,5 @@ use RubyNight\Controllers\IndexController;
 //
 
 // Routes to index view
-$app->route->get('/', [IndexController::class, 'index']);
-
-// Example of singleton
-$app->route->get('/docs', Phug::display('h1 RubyNight Docs'));
-
-// execute the app
-$app->execute();
+$app->route::get('/', [IndexController::class, 'index']);
+$app->route::get('/docs', [IndexController::class, 'index']);

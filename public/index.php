@@ -11,3 +11,5 @@
  */
 
 require_once '../index.php';
+
+$app->execute();

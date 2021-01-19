@@ -9,6 +9,12 @@ use RubyNight\Kernel\Helpers\Config;
 
 /**
  * Logger class
+ * 
+ * @category Framework
+ * @package  RubyNight\Libs\Logger;
+ * @author   Christian Hernandez (@DevKhris) <devkhris@outlook.com>
+ * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
+ * @link     Repository https://github.com/DevKhris/rubynight
  */
 class Logger extends \Monolog\Logger
 {
