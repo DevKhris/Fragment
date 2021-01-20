@@ -1,5 +1,5 @@
 Options -MultiViews -Indexes
-DirectoryIndex public/index.php public/index.html
+
 
 RewriteEngine On
 # RewriteBase '/''

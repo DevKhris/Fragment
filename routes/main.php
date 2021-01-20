@@ -20,4 +20,3 @@ use RubyNight\Kernel\Router\Router;
 // Routes to index view
 
 $app->route->get('/', [IndexController::class, 'index']);
-
