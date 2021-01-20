@@ -4,12 +4,12 @@
 
 @layer base {
   @font-face {
-    font-family: Proxima Nova;
+    font-family: Proxima Nova, sans-serif;
     font-weight: 400;
     src: url(/fonts/proxima-nova/400-regular.woff) format("woff");
   }
   @font-face {
-    font-family: Proxima Nova;
+    font-family: Proxima Nova, sans-serif;
     font-weight: 500;
     src: url(/fonts/proxima-nova/500-medium.woff) format("woff");
   }

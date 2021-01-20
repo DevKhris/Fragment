@@ -31,10 +31,11 @@ class Debug
      */
     public function print()
     {
-        echo '<div style="background: #123; color: #fff; font-family: sans-serif;">';
-        echo '<h2 style="margin-top: 2px;">Debug</h2>';
+        $report = var_export($this->debug, true);
+        echo '<main style="background: #123; color: #fff; font-family: sans-serif;">';
+        echo '<h2 style="padding: 10px;">Debug</h2>';
         echo '<pre style="font-size: 12px; >';
-        var_dump($this->debug);
-        echo "</pre></div>";
+        var_dump($report);
+        echo "</pre></main>";
     }
 }

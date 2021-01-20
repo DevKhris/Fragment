@@ -13,6 +13,7 @@ namespace RubyNight\Kernel\Http;
  */
 class Response
 {
+    public $status = 200;
     /**
      * Set status for http response
      * 
@@ -21,6 +22,19 @@ class Response
     public function setStatus(int $code)
     {
         // sends response code from int
-        http_response_code($code);
+        $this->status = http_response_code($code);
+        return $this;
+    }
+
+    /**
+     * Get json from response
+     * 
+     * @param array|object $data data to encode
+     */
+    public function JSON($data = [])
+    {
+        http_response_code($this->status);
+        header('Content-Type: application/json');
+        echo json_encode($data);
     }
 }

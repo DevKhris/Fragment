@@ -34,5 +34,6 @@ class Config
                 return $default;
             }
         }
+        return self::$_config[$key];
     }
 }

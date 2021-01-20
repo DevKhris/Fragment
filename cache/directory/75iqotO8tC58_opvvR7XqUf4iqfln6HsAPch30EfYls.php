@@ -1,1 +1,0 @@
-<h1>RubyNight Docs</h1>

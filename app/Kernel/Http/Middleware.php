@@ -3,7 +3,7 @@
 namespace RubyNight\Kernel\Http;
 
 /**
- * Middleware class
+ * Middleware abstract class
  *
  * @category Framework
  * @package  RubyNight\Kernel\Http;

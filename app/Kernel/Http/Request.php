@@ -13,13 +13,17 @@ namespace RubyNight\Kernel\Http;
  */
 class Request
 {
-    public $req;
+    public $params;
+    public $method;
+    public $contentType;
     /**
      * Constructor
      */
-    function __construct()
+    function __construct($params = [])
     {
-        $this->getMethod();
+        $this->params = $params;
+        $this->method = $this->getMethod();
+        $this->contentType = $this->getType();
     }
 
     /**
@@ -32,14 +36,13 @@ class Request
         // get's the request uri or set's it to root
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         // gets the position of the path at mark ?
-        $pos = \strpos($path, '?');
+        $pos = strpos($path, '?');
         // if position if false, return path
         if (!$pos) {
             return $path;
         }
         // substracts position mark from path
-        $path = \substr($path, 0, $pos);
-
+        $path = substr($path, 0, $pos);
         // returns the path wthout params
         return $path;
     }
@@ -52,44 +55,57 @@ class Request
     public function getMethod()
     {
         // get's the method and lowercases the value
-        $method = strtolower($_SERVER['REQUEST_METHOD']);
+        $method = trim($_SERVER['REQUEST_METHOD']);
         // returns method
         return $method;
     }
 
-    public function onGet()
+    /**
+     * Get contentType from server
+     *
+     * @return void
+     */
+    public function getType()
     {
-        return $this->getMethod() === 'get';
+        $type = !empty($_SERVER['CONTENT_TYPE']) ? trim($_SERVER['CONTENT_TYPE']) : 'application/html';
+        return $type;
     }
-
-    public function onPost()
-    {
-        return $this->getMethod() === 'post';
-    }
-
-    public function onPut()
-    {
-        return $this->getMethod() === 'put';
-    }
-
-    public function onDelete()
-    {
-        return $this->getMethod() === 'put';
-    }
-
+    /**
+     * Get body function
+     *
+     * @return array
+     */
     public function getBody()
     {
         $body = [];
-        if ($this->getMethod() === 'get') {
-            foreach ($_GET as $key) {
-                $body[$key] = \filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+        if ($this->getMethod() == 'GET') {
+            foreach ($_POST as $key => $value) {
+                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
-        }
-        if ($this->getMethod() === 'post') {
-            foreach ($_POST as $key) {
-                $body[$key] = \filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
-            }
+        } else {
+            return '';
         }
         return $body;
+    }
+
+    /**
+     * Get JSON function
+     *
+     * @return array
+     */
+    public function getJson()
+    {
+        if ($this->getMethod() == 'POST') {
+        } else {
+            return [];
+        }
+
+        if (strcasecmp($this->contentType, 'application/json') !== 0) {
+            return [];
+        }
+        $content = trim(file_get_contents("php://input"));
+        $json = json_decode($content);
+
+        return $json;
     }
 }

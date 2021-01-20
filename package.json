@@ -1,7 +1,7 @@
 {
   "name": "rubynight",
-  "version": "0.0.1",
-  "description": "A PHP MVC Framework inspired by Laravel, Laminas and Rails.",
+  "version": "0.2.1",
+  "description": "A PHP MVC Framework",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -2,9 +2,9 @@
 
 namespace RubyNight;
 
+use RubyNight\Kernel\Router\Router;
 use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
-use RubyNight\Kernel\Router\Router;
 use RubyNight\Kernel\Http\Controller;
 use RubyNight\Libs\Logger;
 
@@ -21,7 +21,7 @@ class Application
 {
     public static Application $app;
     public ?Controller $controller = null;
-    public string $path;
+    public static string $path;
     public Request $req;
     public Response $res;
     public Router $route;
@@ -39,17 +39,17 @@ class Application
         // self instance 
         self::$app = $this;
         // application path
-        $this->path = $path;
+        self::$path = $path;
         // new request instance
         $this->req = new Request();
         // new response instance
         $this->res = new Response();
-        // new Logger instance
-        $this->log = Logger::get();
         // new router instance
         $this->route = new Router($this->req, $this->res);
+        // new Logger instance
+        $this->log = Logger::get();
         // return instance
-        return self::$app;
+        return $this;
     }
 
     /**
@@ -57,7 +57,7 @@ class Application
      *
      * @return $this executes callback from request
      */
-    public function execute()
+    public function run()
     {
         // returns resolve
         return $this->route->resolve();

@@ -10,13 +10,14 @@
  * @link     Repository https://github.com/DevKhris/rubynight
  */
 
-use RubyNight\Kernel\Router\Router;
 use RubyNight\Controllers\IndexController;
+use RubyNight\Kernel\Router\Router;
 
 //
 // Here goes the routes for the RubyNight routing
 //
 
 // Routes to index view
-$app->route::get('/', [IndexController::class, 'index']);
-$app->route::get('/docs', [IndexController::class, 'index']);
+
+$app->route->get('/', [IndexController::class, 'index']);
+

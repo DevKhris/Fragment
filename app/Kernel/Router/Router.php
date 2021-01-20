@@ -24,7 +24,7 @@ class Router
      * 
      * @var array
      */
-    protected static $routes = array();
+    private $routes = array();
 
     /** 
      * Parameters from the route
@@ -36,8 +36,8 @@ class Router
     /**
      * Constructor function
      *
-     * @param Request  $req passes Response to constructor
-     * @param Response $res passes Request to constructor
+     * @param Request  $req Request object
+     * @param Response $res Response object
      *
      * @return $this
      */
@@ -54,29 +54,29 @@ class Router
     /**
      * Get function
      *
-     * @param string $path     uri path
+     * @param string $route    uri path
      * @param string $callback callback
      *
-     * @return void
+     * @return $this
      */
-    public static function get($route, $callback)
+    public function get($route, $callback)
     {
         // get's the path route and returns it's callback
-        return self::$routes['get'][$route] = $callback;
+        return $this->routes['GET'][$route] = $callback;
     }
 
     /**
      * Post function
      *
-     * @param string $route     uri path
+     * @param string $route    uri path
      * @param string $callback callback
      *
      * @return void
      */
-    public static function post($route, $callback)
+    public function post($route, $callback)
     {
         // post's the path route and returns it's callback
-        return self::$routes['post'][$route] = $callback;
+        return $this->routes['POST'][$route] = $callback;
     }
 
     /**
@@ -88,13 +88,23 @@ class Router
     {
         // get path from request
         $route = $this->req->getPath();
-        // get pmethod from request
+        // get method from request
         $method = $this->req->getMethod();
         // get the route method and path or return false
         $callback = $this->routes[$method][$route] ?? false;
         // if not callback then return 404 state and display view
-        if (!$callback) {
+        if ($callback === false) {
             $this->res->setStatus(404);
+            $template = '
+            body(style="background:#131313; color: #f1f1f1; font-family: monospace;")
+                div(style="text-align: center; margin-top: 10%;")
+                    h1(style="font-size: 3em; color: #a0f") | 404 Not Found
+                    h2 Cannot find the requested resource.
+            ';
+            return $this->render($template);
+        }
+        if (is_string($callback)) {
+            return call_user_func($callback);
         }
         // if callback is a array
         if (is_array($callback)) {
@@ -114,22 +124,34 @@ class Router
             // executes the class method from callback
             return call_user_func($callback, $this->req, $this->res);
         }
-        if (is_string($callback)) {
-            return call_user_func($callback);
-        }
+
+        return call_user_func($callback, $this->req, $this->res);
     }
 
     /**
      * Render view to route
      *
-     * @param string $view     view to display
-     * @param array  $args     args
-     * @param array  $opt      options
+     * @param string $view view to display
+     * @param array  $args args
+     * @param array  $opt  options
      *
      * @return view           rendered view
      */
     public static function view($view, $args = [null], $opt = [null])
     {
-        Phug::displayFile(Config::get('VIEWS_PATH') . "/$view.pug", $args, $opt);
+        Phug::displayFile(Config::get('VIEWS_PATH') . "$view.pug", $args, $opt);
+    }
+
+    /**
+     * Render content with paramaters
+     *
+     * @param string $input   inline-template to render
+     * @param array  $_params parameters for render
+     * 
+     * @return void
+     */
+    public static function render($input, $_params = [null])
+    {
+        Phug::display($input, $_params);
     }
 }

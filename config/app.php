@@ -14,10 +14,10 @@ $PATH = realpath(dirname(__DIR__));
 $dotenv = \Dotenv\Dotenv::createImmutable($PATH);
 $dotenv->load();
 
-return $config = [
+return [
     'BASE_PATH' => $PATH,
-    'VIEWS_PATH' => realpath('resources/views/'),
-    'LOGS_PATH' => realpath('logs'),
+    'VIEWS_PATH' => $PATH . '/resources/views/',
+    'LOGS_PATH' => $PATH . '/logs/',
     'APP_NAME' => $_ENV['APP_NAME'],
     'APP_VERSION' => $_ENV['APP_VERSION'],
     'APP_DEBUG' => $_ENV['APP_DEBUG']
