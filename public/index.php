@@ -42,5 +42,6 @@ if ($_ENV['APP_DEBUG'] == "true") {
 }
 // Require routes below
 require BASE_PATH . '/routes/main.php';
+require BASE_PATH . '/routes/api.php';
 
 $app->run();

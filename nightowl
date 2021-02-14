@@ -1,0 +1,41 @@
+<?php
+namespace RubyNight;
+
+require __DIR__ . './vendor/autoload.php';
+
+use RubyNight\Kernel\Console\NightOwl;
+use RubyNight\Kernel\Console\Utils\LineParser;
+
+if (php_sapi_name() !== 'cli') {
+    exit;
+}
+
+$cli = new NightOwl();
+$cli->setSignature("nightowl help");
+
+$cli->render()->echo("
+███╗   ██╗██╗ ██████╗ ██╗  ██╗████████╗ ██████╗ ██╗    ██╗██╗     
+████╗  ██║██║██╔════╝ ██║  ██║╚══██╔══╝██╔═══██╗██║    ██║██║     
+██╔██╗ ██║██║██║  ███╗███████║   ██║   ██║   ██║██║ █╗ ██║██║     
+██║╚██╗██║██║██║   ██║██╔══██║   ██║   ██║   ██║██║███╗██║██║     
+██║ ╚████║██║╚██████╔╝██║  ██║   ██║   ╚██████╔╝╚███╔███╔╝███████╗
+╚═╝  ╚═══╝╚═╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝    ╚═════╝  ╚══╝╚══╝ ╚══════╝
+
+
+Running NightOwl CLI v0.1.1"
+);
+
+$cli->register->set(
+    'help', function (LineParser $input) use ($cli) {
+        echo "Just read the documentation, you rankie moron!";
+});
+
+$cli->register->set(
+    'migrate', new \RubyNight\Kernel\Console\Controllers\DB\MigrateController
+);
+
+$cli->register->set(
+    'clear', new \RubyNight\Kernel\Console\Controllers\Cache\ClearController
+);
+
+$cli->run($argv);

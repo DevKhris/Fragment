@@ -1,5 +1,5 @@
 Options -MultiViews -Indexes
-
+Options +FollowSymLinks
 
 RewriteEngine On
 # RewriteBase '/''

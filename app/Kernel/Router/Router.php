@@ -93,11 +93,12 @@ class Router
         // get the route method and path or return false
         $callback = $this->routes[$method][$route] ?? false;
         // if not callback then return 404 state and display view
-        if ($callback === false) {
+        if (!$callback) {
             $this->res->setStatus(404);
             $template = '
             body(style="background:#131313; color: #f1f1f1; font-family: monospace;")
                 div(style="text-align: center; margin-top: 10%;")
+                    img(src="/img/icon.png")
                     h1(style="font-size: 3em; color: #a0f") | 404 Not Found
                     h2 Cannot find the requested resource.
             ';
@@ -124,8 +125,6 @@ class Router
             // executes the class method from callback
             return call_user_func($callback, $this->req, $this->res);
         }
-
-        return call_user_func($callback, $this->req, $this->res);
     }
 
     /**

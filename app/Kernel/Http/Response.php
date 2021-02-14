@@ -27,7 +27,7 @@ class Response
     }
 
     /**
-     * Get json from response
+     * Send json as response
      * 
      * @param array|object $data data to encode
      */

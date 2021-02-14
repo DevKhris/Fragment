@@ -21,7 +21,7 @@ class Request
      */
     function __construct($params = [])
     {
-        $this->params = $params;
+        $this->params = $this->getBody();
         $this->method = $this->getMethod();
         $this->contentType = $this->getType();
     }
@@ -78,9 +78,10 @@ class Request
     public function getBody()
     {
         $body = [];
-        if ($this->getMethod() == 'GET') {
+        if ($this->getMethod() == 'POST') {
             foreach ($_POST as $key => $value) {
-                $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);
+                var_dump($value);
+                $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
         } else {
             return '';

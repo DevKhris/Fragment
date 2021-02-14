@@ -16,8 +16,10 @@
     },
     "require": {
         "phug/phug": "^1.8",
-        "propel/propel": "^2.0.0-alpha11",
         "monolog/monolog": "^2.2",
-        "vlucas/phpdotenv": "^5.2"
+        "vlucas/phpdotenv": "^5.2",
+        "illuminate/database": "^8.27",
+        "illuminate/events": "^8.27",
+        "illuminate/filesystem": "^8.27"
     }
 }

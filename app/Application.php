@@ -2,11 +2,12 @@
 
 namespace RubyNight;
 
-use RubyNight\Kernel\Router\Router;
+use RubyNight\Libs\Logger;
+use RubyNight\Libs\Database;
 use RubyNight\Kernel\Http\Request;
 use RubyNight\Kernel\Http\Response;
+use RubyNight\Kernel\Router\Router;
 use RubyNight\Kernel\Http\Controller;
-use RubyNight\Libs\Logger;
 
 /**
  * Application class
@@ -19,9 +20,10 @@ use RubyNight\Libs\Logger;
  */
 class Application
 {
-    public static Application $app;
-    public ?Controller $controller = null;
     public static string $path;
+    public static Application $app;
+    public Database $db;
+    public ?Controller $controller = null;
     public Request $req;
     public Response $res;
     public Router $route;
@@ -36,7 +38,7 @@ class Application
      */
     public function __construct($path)
     {
-        // self instance 
+        // declare this as app instance 
         self::$app = $this;
         // application path
         self::$path = $path;
@@ -48,6 +50,8 @@ class Application
         $this->route = new Router($this->req, $this->res);
         // new Logger instance
         $this->log = Logger::get();
+        // new Eloquent Database instance
+        $this->db = new Database();
         // return instance
         return $this;
     }
