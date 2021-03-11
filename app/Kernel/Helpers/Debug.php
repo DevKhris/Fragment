@@ -3,6 +3,8 @@
 
 namespace RubyNight\Kernel\Helpers;
 
+use RubyNight\Kernel\View\View;
+
 class Debug
 {
 
@@ -20,7 +22,8 @@ class Debug
      */
     public function __construct($app)
     {
-        $this->debug = array('Application' => (array) $app);
+        $this->view = new View;
+        $this->debug = array('RubyNight' => $app);
         return $this;
     }
 
@@ -31,11 +34,6 @@ class Debug
      */
     public function print()
     {
-        $report = var_export($this->debug, true);
-        echo '<main style="background: #123; color: #fff; font-family: sans-serif;">';
-        echo '<h2 style="padding: 10px;">Debug</h2>';
-        echo '<pre style="font-size: 12px; >';
-        var_dump($report);
-        echo "</pre></main>";
+        dump($this->debug);
     }
 }

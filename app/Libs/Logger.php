@@ -4,8 +4,9 @@
 namespace RubyNight\Libs;
 
 use Monolog\ErrorHandler;
+
 use Monolog\Handler\StreamHandler;
-use RubyNight\Kernel\Helpers\Config;
+use RubyNight\Kernel\Helpers\ConfigHandler as Config;
 
 /**
  * Logger class

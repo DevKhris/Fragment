@@ -1,25 +1,28 @@
 {
-    "name": "devkhris/rubynight",
-    "description": "PHP MVC Framework",
-    "authors": [
-        {
-            "name": "Christian Hernandez",
-            "email": "chrissh443@gmail.com"
-        }
-    ],
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "RubyNight\\": "app/",
-            "RubyNight\\Controllers\\": "app/Controllers/"
-        }
-    },
-    "require": {
-        "phug/phug": "^1.8",
-        "monolog/monolog": "^2.2",
-        "vlucas/phpdotenv": "^5.2",
-        "illuminate/database": "^8.27",
-        "illuminate/events": "^8.27",
-        "illuminate/filesystem": "^8.27"
+  "name": "devkhris/rubynight",
+  "description": "PHP MVC Framework",
+  "authors": [
+    {
+      "name": "Christian Hernandez",
+      "email": "chrissh443@gmail.com"
     }
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "RubyNight\\": "app/",
+      "RubyNight\\Controllers\\": "app/Controllers/",
+      "RubyNight\\Models\\": "app/Models"
+    }
+  },
+  "require": {
+    "phug/phug": "^1.8",
+    "monolog/monolog": "^2.2",
+    "vlucas/phpdotenv": "^5.2",
+    "illuminate/database": "^8.27",
+    "illuminate/events": "^8.27",
+    "illuminate/filesystem": "^8.27",
+    "bramus/router": "^1.5",
+    "laminas/laminas-diactoros": "^2.5"
+  }
 }

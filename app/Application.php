@@ -2,12 +2,12 @@
 
 namespace RubyNight;
 
+use Bramus\Router\Router;
 use RubyNight\Libs\Logger;
 use RubyNight\Libs\Database;
-use RubyNight\Kernel\Http\Request;
-use RubyNight\Kernel\Http\Response;
-use RubyNight\Kernel\Router\Router;
+use RubyNight\Kernel\Helpers\ConfigHandler as Config;
 use RubyNight\Kernel\Http\Controller;
+use Laminas\Diactoros\ServerRequestFactory;
 
 /**
  * Application class
@@ -23,9 +23,6 @@ class Application
     public static string $path;
     public static Application $app;
     public Database $db;
-    public ?Controller $controller = null;
-    public Request $req;
-    public Response $res;
     public Router $route;
     public Logger $log;
 
@@ -42,16 +39,22 @@ class Application
         self::$app = $this;
         // application path
         self::$path = $path;
-        // new request instance
-        $this->req = new Request();
-        // new response instance
-        $this->res = new Response();
         // new router instance
-        $this->route = new Router($this->req, $this->res);
+        $this->router = new Router;
+        // Create a server request object
+        $this->request = ServerRequestFactory::fromGlobals(
+            $_SERVER,
+            $_GET,
+            $_POST,
+            $_COOKIE,
+            $_FILES
+        );
         // new Logger instance
         $this->log = Logger::get();
         // new Eloquent Database instance
-        $this->db = new Database();
+        $this->database = new Database;
+        // Create a config handler object
+        $this->config = new Config;
         // return instance
         return $this;
     }
@@ -64,7 +67,7 @@ class Application
     public function run()
     {
         // returns resolve
-        return $this->route->resolve();
+        $this->router->run();
     }
 
     /**

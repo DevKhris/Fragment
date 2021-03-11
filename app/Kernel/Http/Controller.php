@@ -2,7 +2,9 @@
 
 namespace RubyNight\Kernel\Http;
 
-use RubyNight\Application;
+use Laminas\Diactoros\Request;
+use Laminas\Diactoros\Response;
+use RubyNight\Kernel\View\View;
 
 /**
  * Controller class
@@ -15,15 +17,16 @@ use RubyNight\Application;
  */
 class Controller
 {
-    public string $hook;
-
-    private array $_middleware = [];
+    protected array $middleware = [];
 
     /**
      * Constructor function
      */
     function __construct()
     {
+        $this->request = new Request;
+        $this->response = new Response;
+        $this->template = new View;
         return $this;
     }
 
@@ -31,14 +34,14 @@ class Controller
      * Render function
      *
      * @param string $view view to render
-     * @param array  $argv arguments for view
+     * @param array  $params parameters for view
      * 
      * @return string
      */
-    public function render($view, $argv = [])
+    public function view($view, $params = [])
     {
         // return rendered view with arguments
-        return Application::$app->router->view($view, $argv);
+        $this->template->view($view, $params);
     }
 
     /**
@@ -51,7 +54,7 @@ class Controller
     public function register(Middleware $middleware)
     {
         // register middleware to array in controller
-        $this->_middleware[] = $middleware;
+        $this->middleware[] = $middleware;
     }
 
     /**
@@ -62,6 +65,87 @@ class Controller
     public function get(): array
     {
         // get middleware from middlewares array
-        return $this->_middleware;
+        return $this->middleware;
+    }
+
+
+    /**
+     * Display the needed resource.
+     *
+     * @return \Laminas\Diactoros\Response
+     */
+    function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Laminas\Diactoros\Response
+     */
+    function create()
+    {
+        //
+    }
+
+    /**
+     * Store a new resource.
+     *
+     * @param  \Laminas\Diactoros\Request $request
+     * 
+     * @return \Laminas\Diactoros\Response
+     */
+    function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * 
+     * @return \Laminas\Diactoros\Response
+     */
+    function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Laminas\Diactoros\Response
+     */
+    function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource.
+     *
+     * @param \Laminas\Diactoros\Request $request
+     * @param int $id
+     * 
+     * @return \Laminas\Diactoros\Response
+     */
+    function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Delete the specified resource.
+     *
+     * @param  int  $id
+     * 
+     * @return \Laminas\Diactoros\Response
+     */
+    function delete($id)
+    {
+        //
     }
 }

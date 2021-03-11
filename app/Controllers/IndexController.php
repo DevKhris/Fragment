@@ -2,8 +2,7 @@
 
 namespace RubyNight\Controllers;
 
-use RubyNight\Kernel\Router\Router;
-use RubyNight\Kernel\Helpers\Config;
+use RubyNight\Kernel\Helpers\ConfigHandler as Config;
 use RubyNight\Kernel\Http\Controller;
 
 class IndexController extends Controller
@@ -14,8 +13,9 @@ class IndexController extends Controller
      *
      * @return void
      */
-    public static function index()
+    public function index()
     {
-        Router::view('welcome', ['version' => Config::get('APP_VERSION')]);
+        $version = Config::get('APP_VERSION');
+        $this->view('welcome', compact('version'));
     }
 }

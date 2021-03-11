@@ -6,7 +6,7 @@ namespace RubyNight\Libs;
 
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
-use RubyNight\Kernel\Helpers\Config;
+use RubyNight\Kernel\Helpers\ConfigHandler as Config;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Database
@@ -17,14 +17,14 @@ class Database
         self::$capsule = new Capsule;
         self::$capsule->addConnection(
             [
-            'driver' => Config::get('DB_DRIVER'),
-            'host'      => Config::get('DB_HOST'),
-            'database'  => Config::get('DB_NAME'),
-            'username'  => Config::get('DB_USER'),
-            'password'  => Config::get('DB_PASS'),
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
+                'driver' => Config::get('DB_DRIVER'),
+                'host'      => Config::get('DB_HOST'),
+                'database'  => Config::get('DB_NAME'),
+                'username'  => Config::get('DB_USER'),
+                'password'  => Config::get('DB_PASS'),
+                'charset'   => 'utf8',
+                'collation' => 'utf8_unicode_ci',
+                'prefix'    => '',
             ]
         );
 

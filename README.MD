@@ -4,7 +4,21 @@
 
 # Changelog
 
+### v0.5.0alpha
+
+- Replaced Routing and Request with PSR compilant components
+- Refactored Templating class (View)
+- Refactored Controller and added stub methods
+- Improve ConfigHandler Helper
+- Add Config values and changes to .env
+
+### v0.4.5alpha
+
+- Added Nightowl CLI
+- Changed request class
+
 ### v0.3.3alpha
+
 - [Bugfix] Router
 - [*] Improved Front Controller
 - [*] Improved 404 error
@@ -12,11 +26,12 @@
 - [+] Added Basic Debug Helper
 - [+] Added Logging with Monolog
 
-
 ### v0.2.1alpha
+
 - [Bugfix] Routing not working with functions
 - [+] Improve routing and handling of callback
 - [+] Add .env and config
 
 ### v0.1.0
+
 - [+] Added Phug as templating engine with routing

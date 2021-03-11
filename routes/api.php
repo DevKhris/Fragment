@@ -1,5 +1,8 @@
 <?php
 
+use Laminas\Diactoros\Request;
+use Illuminate\Support\Facades\Response;
+
 /**
  * API routes 
  *
@@ -10,8 +13,6 @@
  * @link     Repository https://github.com/DevKhris/rubynight
  */
 
-use RubyNight\Kernel\Http\Request;
-use RubyNight\Kernel\Http\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,5 @@ use RubyNight\Kernel\Http\Response;
 |--------------------------------------------------------------------------
  */
 
-$app->route->get('/post/([0-9])*)', function (Request $req, Response $res) {
-    var_dump($res->JSON([
-        'post' => ['id' => $req->params[0]],
-        'status' => '200'
-    ]));
-    $res->setStatus(200);
+$app->router->get('/post/([0-9])*)', function (Request $req, Response $res) {
 });

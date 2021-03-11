@@ -10,7 +10,6 @@
  * @link     Repository https://github.com/DevKhris/rubynight
  */
 
-use RubyNight\Controllers\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +17,4 @@ use RubyNight\Controllers\IndexController;
 |--------------------------------------------------------------------------
  */
 
-$app->route->get('/', [IndexController::class, 'index']);
+$app->router->get('/', '\RubyNight\Controllers\IndexController@index');
