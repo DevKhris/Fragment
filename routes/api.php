@@ -20,5 +20,5 @@ use Illuminate\Support\Facades\Response;
 |--------------------------------------------------------------------------
  */
 
-$app->router->get('/post/([0-9])*)', function (Request $req, Response $res) {
+$app->router->get('/post/([0-9])*)', function () {
 });

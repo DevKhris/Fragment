@@ -13,7 +13,7 @@
 namespace RubyNight;
 
 use RubyNight\Application;
-use RubyNight\Libs\Logger;
+use RubyNight\Libs\Logging;
 use RubyNight\Kernel\Helpers\Debug;
 
 /*
@@ -35,14 +35,14 @@ define('BASE_PATH', $app->config::get('BASE_PATH'));
 | logging and Debug
 |--------------------------------------------------------------------------
  */
-Logger::enableSysLogs();
-$log = Logger::get();
+Logging::enableSysLogs();
+$logger = Logging::get();
 
 // Debug application
-if ($_ENV['APP_DEBUG'] == "true") {
-    $debug = new Debug($app);
-    $debug->print();
-}
+// if ($_ENV['APP_DEBUG'] == "true") {
+//     $debug = new Debug($app);
+//     $debug->print();
+// }
 
 /*
 |--------------------------------------------------------------------------

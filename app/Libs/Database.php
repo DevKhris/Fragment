@@ -6,12 +6,13 @@ namespace RubyNight\Libs;
 
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
-use RubyNight\Kernel\Helpers\ConfigHandler as Config;
+use RubyNight\Kernel\Helpers\Config;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Database
 {
     public static Capsule $capsule;
+
     public function __construct()
     {
         self::$capsule = new Capsule;

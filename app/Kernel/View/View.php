@@ -3,7 +3,7 @@
 namespace RubyNight\Kernel\View;
 
 use Phug\Phug;
-use RubyNight\Kernel\Helpers\ConfigHandler as Config;
+use RubyNight\Kernel\Helpers\Config;
 
 class View
 {

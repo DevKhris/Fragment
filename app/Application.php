@@ -2,12 +2,14 @@
 
 namespace RubyNight;
 
+use Whoops\Run as Whoops;
 use Bramus\Router\Router;
-use RubyNight\Libs\Logger;
+use RubyNight\Libs\Logging;
 use RubyNight\Libs\Database;
-use RubyNight\Kernel\Helpers\ConfigHandler as Config;
+use RubyNight\Kernel\Helpers\Config;
 use RubyNight\Kernel\Http\Controller;
 use Laminas\Diactoros\ServerRequestFactory;
+use Monolog\Logger;
 
 /**
  * Application class
@@ -20,12 +22,12 @@ use Laminas\Diactoros\ServerRequestFactory;
  */
 class Application
 {
-    public static string $path;
-    public static Application $app;
-    public Database $db;
-    public Router $route;
-    public Logger $log;
-
+    private static string $path;
+    private static Application $app;
+    private Database $database;
+    private Router $route;
+    private Logger $logger;
+    private Whoops $eh;
     /**
      *  Contructor function
      *
@@ -35,13 +37,16 @@ class Application
      */
     public function __construct($path)
     {
-        // declare this as app instance 
+        // Declare self as app instance 
         self::$app = $this;
-        // application path
+
+        // Appplication path
         self::$path = $path;
-        // new router instance
+
+        // new Router instance
         $this->router = new Router;
-        // Create a server request object
+
+        // New ServerRequestFactory instance
         $this->request = ServerRequestFactory::fromGlobals(
             $_SERVER,
             $_GET,
@@ -49,52 +54,32 @@ class Application
             $_COOKIE,
             $_FILES
         );
+
+        // new Whoops Instance (ErrorHandler)
+        $this->eh = new Whoops;
+        $this->eh->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+        $this->eh->register();
+
         // new Logger instance
-        $this->log = Logger::get();
-        // new Eloquent Database instance
+        $this->logger = Logging::get("app",);
+
+        // new Database instance
         $this->database = new Database;
-        // Create a config handler object
+
+        // new Config instance
         $this->config = new Config;
-        // return instance
+
+        // return self instance
         return $this;
     }
 
     /**
-     * Execute callback resolve
+     * Application Bootstrap
      *
      * @return $this executes callback from request
      */
     public function run()
     {
-        // returns resolve
         $this->router->run();
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param string $event
-     * 
-     * @return void
-     */
-    public function doEvent($event)
-    {
-        $callbacks = $this->eventListener[$event] ?? [];
-        foreach ($callbacks as $cb) {
-            call_user_func($cb);
-        }
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param string $event
-     * @param string $callback
-     * 
-     * @return void
-     */
-    public function on($event, $callback)
-    {
-        $this->eventListeners[$event][] = $callback;
     }
 }

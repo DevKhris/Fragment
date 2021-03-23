@@ -6,16 +6,16 @@
 
 ### v0.5.0alpha
 
-- Replaced Routing and Request with PSR compilant components
-- Refactored Templating class (View)
-- Refactored Controller and added stub methods
-- Improve ConfigHandler Helper
-- Add Config values and changes to .env
+- [+] Replaced Routing and Request with PSR compilant components
+- [+] Refactored Templating class (View)
+- [+] Refactored Controller and added stub methods
+- [+] Improve ConfigHandler Helper
+- [+] Add Config values and changes to .env
 
 ### v0.4.5alpha
 
-- Added Nightowl CLI
-- Changed request class
+- [+] Added Nightowl CLI
+- [+] Changed request class
 
 ### v0.3.3alpha
 

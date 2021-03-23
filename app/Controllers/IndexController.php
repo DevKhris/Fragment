@@ -2,12 +2,11 @@
 
 namespace RubyNight\Controllers;
 
-use RubyNight\Kernel\Helpers\ConfigHandler as Config;
+use RubyNight\Kernel\Helpers\Config;
 use RubyNight\Kernel\Http\Controller;
 
 class IndexController extends Controller
 {
-
     /**
      * Index function
      *

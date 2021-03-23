@@ -11,7 +11,7 @@ namespace RubyNight\Kernel\Helpers;
  * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
  * @link     Repository https://github.com/DevKhris/rubynight
  */
-class ConfigHandler
+class Config
 {
 
     /**
