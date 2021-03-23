@@ -28,6 +28,7 @@ class Application
     private Router $route;
     private Logger $logger;
     private Whoops $eh;
+
     /**
      *  Contructor function
      *
@@ -61,7 +62,7 @@ class Application
         $this->eh->register();
 
         // new Logger instance
-        $this->logger = Logging::get("app",);
+        $this->logger = Logging::get();
 
         // new Database instance
         $this->database = new Database;
@@ -80,6 +81,12 @@ class Application
      */
     public function run()
     {
-        $this->router->run();
+        if (isset($_SERVER['REQUEST_METHOD'])) {
+            if ($this->router->run()) {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 }

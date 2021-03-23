@@ -11,9 +11,10 @@
   "autoload": {
     "psr-4": {
       "RubyNight\\": "app/",
-      "RubyNight\\Controllers\\": "app/Controllers/",
+      "RubyNight\\Controllers\\": "app/Controllers",
       "RubyNight\\Models\\": "app/Models",
-      "RubyNIght\\Presenters": "app/Presenters"
+      "RubyNight\\Presenters\\": "app/Presenters",
+      "RubyNight\\Tests": "./tests"
     }
   },
   "require": {
@@ -25,8 +26,9 @@
     "illuminate/filesystem": "^8.27",
     "bramus/router": "^1.5",
     "laminas/laminas-diactoros": "^2.5",
-    "filp/whoops": "^2.11",
-    "psr/http-server-handler": "^1.0",
-    "symfony/http-foundation": "^5.2"
+    "filp/whoops": "^2.11"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9"
   }
 }
