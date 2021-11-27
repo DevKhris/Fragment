@@ -1,5 +1,5 @@
 {
-  "name": "devkhris/rubynight",
+  "name": "devkhris/fragment",
   "description": "PHP MVC Framework",
   "authors": [
     {
@@ -10,11 +10,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "RubyNight\\": "app/",
-      "RubyNight\\Controllers\\": "app/Controllers",
-      "RubyNight\\Models\\": "app/Models",
-      "RubyNight\\Presenters\\": "app/Presenters",
-      "RubyNight\\Tests": "./tests"
+      "Fragmment\\": "app/"
     }
   },
   "require": {
@@ -26,7 +22,10 @@
     "illuminate/filesystem": "^8.27",
     "bramus/router": "^1.5",
     "laminas/laminas-diactoros": "^2.5",
-    "filp/whoops": "^2.11"
+    "filp/whoops": "^2.11",
+    "spiral/roadrunner": "v2.0",
+    "nyholm/psr7": "^1.4",
+    "symfony/console": "^5.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^9"

@@ -1,0 +1,16 @@
+<?php
+namespace Fragment;
+
+require __DIR__ . './vendor/autoload.php';
+
+use Fragment\Kernel\Commands\MigrationCommand;
+use Symfony\Component\Console\Application;
+
+
+$app = new Application();
+
+// register commands
+$app->add(new MigrationCommand);
+
+
+$app->run();

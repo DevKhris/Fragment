@@ -1,15 +1,15 @@
 <?php
 
-namespace RubyNight\Kernel\Bootstrapers;
+namespace Fragment\Kernel\Bootstrapers;
 
-use RubyNight\Kernel\Helpers\Config;
+use Fragment\Kernel\Helpers\Configuration;
 
 class Bootstraper
 {
     public function __invoke()
     {
         return [
-            'Config' => Config::class,
+            'Config' => Configuration::class,
         ]
     }
 }

@@ -6,7 +6,7 @@ namespace RubyNight\Libs;
 
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
-use RubyNight\Kernel\Helpers\Config;
+use Fragment\Kernel\Helpers\Config;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Database

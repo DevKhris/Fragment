@@ -4,6 +4,10 @@
 
 # Changelog
 
+### v0.5.1alpha
+- [+] Renamed to Fragment
+
+
 ### v0.5.0alpha
 
 - [+] Replaced Routing and Request with PSR compilant components

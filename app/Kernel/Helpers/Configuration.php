@@ -1,6 +1,6 @@
 <?php
 
-namespace RubyNight\Kernel\Helpers;
+namespace Fragment\Kernel\Helpers;
 
 /**
  * Config Handler class
@@ -11,7 +11,7 @@ namespace RubyNight\Kernel\Helpers;
  * @license  MIT https://github.com/DevKhris/rubynight/blob/main/LICENSE
  * @link     Repository https://github.com/DevKhris/rubynight
  */
-class Config
+class Configuration
 {
 
     /**

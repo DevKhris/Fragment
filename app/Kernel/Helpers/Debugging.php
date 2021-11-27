@@ -1,11 +1,11 @@
 <?php
 
 
-namespace RubyNight\Kernel\Helpers;
+namespace Fragment\Kernel\Helpers;
 
-use RubyNight\Kernel\View\View;
+use Fragment\Kernel\View\View;
 
-class Debug
+class Debugging
 {
 
     /**
@@ -23,7 +23,7 @@ class Debug
     public function __construct($app)
     {
         $this->view = new View;
-        $this->debug = array('RubyNight' => $app);
+        $this->debug = array('Fragment' => $app);
         return $this;
     }
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace RubyNight\Kernel\View;
+namespace Fragment\Kernel\View;
 
 use Phug\Phug;
-use RubyNight\Kernel\Helpers\Config;
+use Fragment\Kernel\Helpers\Config;
 
 class View
 {

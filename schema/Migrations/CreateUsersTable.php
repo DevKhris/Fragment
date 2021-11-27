@@ -1,8 +1,8 @@
 <?php
 
-namespace RubyNight\Migrations;
+namespace Fragment\Migrations;
 
-use RubyNight\Libs\Database;
+use Fragment\Libs\Database;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -10,7 +10,7 @@ class CreateUsersTable extends Migration
 {
     public static function up()
     {
-        return Database::$capsule->schema()->create('users',function(Blueprint $table) 
+        return Database::$capsule->schema()->create('users', function(Blueprint $table) 
         {
             $table->id();
             $table->string('username')->unique();
